@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Arus Cash — Laporan Keuangan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <aside>
+        <a class="brand"><span>A</span>Arus Cash</a>
+        <nav>
+          <button class="active" data-page="overview">⌂ <b>Ringkasan</b></button
+          ><button data-page="transactions">↕ <b>Transaksi</b></button
+          ><button data-page="categories">▦ <b>Kategori</b></button>
+        </nav>
+        <div class="aside-bottom">
+          <div class="help">
+            ✦
+            <div>
+              <b>Butuh bantuan?</b
+              ><small>Kelola keuanganmu dengan mudah.</small>
+            </div>
+          </div>
+          <p>© 2026 Arus Cash</p>
+        </div>
+      </aside>
+      <main>
+        <header>
+          <div>
+            <p class="eyebrow" id="dateTitle">SENIN, 27 JULI 2026</p>
+            <h1 id="pageTitle">Ringkasan Keuangan</h1>
+          </div>
+          <button class="primary" id="openModal">＋ Tambah Transaksi</button>
+        </header>
+        <section id="overview" class="page active">
+          <div class="cards">
+            <article class="card balance">
+              <div class="card-icon">◈</div>
+              <p>Total Saldo</p>
+              <h2 id="balance">Rp0</h2>
+              <small id="balanceNote">Siap mencatat keuanganmu</small>
+            </article>
+            <article class="card">
+              <div class="card-icon green">↙</div>
+              <p>Pemasukan Bulan Ini</p>
+              <h2 id="income">Rp0</h2>
+              <small class="up" id="incomeNote">Belum ada data</small>
+            </article>
+            <article class="card">
+              <div class="card-icon red">↗</div>
+              <p>Pengeluaran Bulan Ini</p>
+              <h2 id="expense">Rp0</h2>
+              <small class="down" id="expenseNote">Belum ada data</small>
+            </article>
+          </div>
+          <div class="grid">
+            <article class="panel chart-panel">
+              <div class="panel-head">
+                <div>
+                  <h3>Arus Kas</h3>
+                  <p>Pemasukan dan pengeluaran</p>
+                </div>
+                <select id="monthFilter">
+                  <option value="">Bulan ini</option>
+                </select>
+              </div>
+              <div class="chart-wrap">
+                <div class="y-labels">
+                  <span>8jt</span><span>6jt</span><span>4jt</span
+                  ><span>2jt</span><span>0</span>
+                </div>
+                <div class="chart">
+                  <div class="bars" id="chartBars"></div>
+                  <div class="x-axis">
+                    <span>Min</span><span>Sel</span><span>Rab</span
+                    ><span>Kam</span><span>Jum</span><span>Sab</span
+                    ><span>Min</span>
+                  </div>
+                </div>
+              </div>
+              <div class="legend">
+                <i class="income-dot"></i>Pemasukan
+                <i class="expense-dot"></i>Pengeluaran
+              </div>
+            </article>
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <h3>Pengeluaran Terbesar</h3>
+                  <p>Bulan ini</p>
+                </div>
+              </div>
+              <div class="category-list" id="topCategories">
+                <div class="empty">Belum ada pengeluaran.</div>
+              </div>
+            </article>
+          </div>
+          <article class="panel recent">
+            <div class="panel-head">
+              <div>
+                <h3>Transaksi Terakhir</h3>
+                <p>Aktivitas keuangan terbaru</p>
+              </div>
+              <button class="link" data-go="transactions">Lihat Semua →</button>
+            </div>
+            <div id="recentTransactions"></div>
+          </article>
+        </section>
+        <section id="transactions" class="page">
+          <div class="panel full">
+            <div class="panel-head transhead">
+              <div>
+                <h3>Semua Transaksi</h3>
+                <p>Riwayat pemasukan dan pengeluaran Anda</p>
+              </div>
+              <div class="filters">
+                <select id="typeFilter">
+                  <option value="">Semua tipe</option>
+                  <option value="income">Pemasukan</option>
+                  <option value="expense">Pengeluaran</option></select
+                ><input id="search" placeholder="Cari transaksi…" />
+              </div>
+            </div>
+            <div id="transactionTable"></div>
+          </div>
+        </section>
+        <section id="categories" class="page">
+          <div class="panel full">
+            <div class="panel-head">
+              <div>
+                <h3>Kategori</h3>
+                <p>Atur kategori pemasukan dan pengeluaran</p>
+              </div>
+              <button class="primary small" id="addCategory">
+                ＋ Tambah Kategori
+              </button>
+            </div>
+            <div class="category-grid" id="categoriesList"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <div class="modal" id="modal">
+      <div class="modal-box">
+        <button class="close" id="closeModal">×</button>
+        <h2 id="modalTitle">Tambah Transaksi</h2>
+        <p class="modal-desc">Catat aktivitas keuangan Anda.</p>
+        <form id="transactionForm">
+          <label
+            >Tipe Transaksi
+            <div class="type-toggle">
+              <input
+                type="radio"
+                name="type"
+                value="expense"
+                id="expenseRadio"
+                checked
+              /><label for="expenseRadio">↗ Pengeluaran</label
+              ><input
+                type="radio"
+                name="type"
+                value="income"
+                id="incomeRadio"
+              /><label for="incomeRadio">↙ Pemasukan</label>
+            </div></label
+          ><label
+            >Judul Transaksi<input
+              name="title"
+              required
+              placeholder="Contoh: Belanja bulanan" /></label
+          ><label
+            >Kategori<select
+              name="category_id"
+              id="categorySelect"
+              required
+            ></select></label
+          ><label
+            >Jumlah (Rp)<input
+              name="amount"
+              type="number"
+              min="1"
+              required
+              placeholder="0" /></label
+          ><label>Tanggal<input name="date" type="date" required /></label
+          ><button class="primary submit">Simpan Transaksi</button>
+        </form>
+      </div>
+    </div>
+    <div class="modal" id="categoryModal">
+      <div class="modal-box compact">
+        <button class="close" id="closeCategoryModal">×</button>
+        <h2>Tambah Kategori</h2>
+        <p class="modal-desc">Buat kategori baru untuk transaksi.</p>
+        <form id="categoryForm">
+          <label
+            >Nama Kategori<input
+              name="name"
+              required
+              placeholder="Contoh: Kesehatan" /></label
+          ><label
+            >Tipe<select name="type">
+              <option value="expense">Pengeluaran</option>
+              <option value="income">Pemasukan</option>
+            </select></label
+          ><label
+            >Ikon (emoji)<input
+              name="icon"
+              required
+              value="🏷️"
+              maxlength="4" /></label
+          ><button class="primary submit">Simpan Kategori</button>
+        </form>
+      </div>
+    </div>
+    <div id="toast"></div>
+    <script src="script.js"></script>
+  </body>
+</html>
