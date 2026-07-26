@@ -1,7 +1,4 @@
-   Arus Cash — aplikasi laporan keuangan sederhana
-   Data disimpan di localStorage sehingga tetap ada setelah refresh.
-   ========================================================= */
-
+ 
 const STORAGE_TX = 'aruscash_tx_v1';
 const STORAGE_CAT = 'aruscash_cat_v1';
 
