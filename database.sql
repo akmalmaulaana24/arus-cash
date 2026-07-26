@@ -1,4 +1,4 @@
--- Skema MySQL alternatif (backend bawaan menggunakan SQLite otomatis)
+
 CREATE DATABASE IF NOT EXISTS laporan_keuangan;
 USE laporan_keuangan;
 CREATE TABLE categories (id INT AUTO_INCREMENT PRIMARY KEY,name VARCHAR(100) NOT NULL,type ENUM('income','expense') NOT NULL,icon VARCHAR(12) DEFAULT '🏷️');
