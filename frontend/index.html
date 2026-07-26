@@ -29,7 +29,7 @@
               ><small>Kelola keuanganmu dengan mudah.</small>
             </div>
           </div>
-          <p>© 2026 Arus Cash</p>
+          <p>© Update tampilan dashboard Arus Cash</p>
         </div>
       </aside>
       <main>
@@ -38,9 +38,8 @@
             <p class="eyebrow" id="dateTitle">SENIN, 27 JULI 2026</p>
             <h1 id="pageTitle">Dashboard Arus Cash</h1>
           </div>
-          <button class="primary" id="openModal" type="button">＋ Tambah Transaksi</button>
+          <button class="primary" id="openModal">＋ Tambah Transaksi</button>
         </header>
-
         <section id="overview" class="page active">
           <div class="cards">
             <article class="card balance">
@@ -62,23 +61,29 @@
               <small class="down" id="expenseNote">Belum ada data</small>
             </article>
           </div>
-
           <div class="grid">
             <article class="panel chart-panel">
               <div class="panel-head">
                 <div>
                   <h3>Arus Kas</h3>
-                  <p>Pemasukan dan pengeluaran 7 hari terakhir</p>
+                  <p>Pemasukan dan pengeluaran</p>
                 </div>
+                <select id="monthFilter">
+                  <option value="">Bulan ini</option>
+                </select>
               </div>
               <div class="chart-wrap">
                 <div class="y-labels">
-                  <span id="y4">0</span><span id="y3">0</span><span id="y2">0</span
-                  ><span id="y1">0</span><span>0</span>
+                  <span>8jt</span><span>6jt</span><span>4jt</span
+                  ><span>2jt</span><span>0</span>
                 </div>
                 <div class="chart">
                   <div class="bars" id="chartBars"></div>
-                  <div class="x-axis" id="xAxis"></div>
+                  <div class="x-axis">
+                    <span>Min</span><span>Sel</span><span>Rab</span
+                    ><span>Kam</span><span>Jum</span><span>Sab</span
+                    ><span>Min</span>
+                  </div>
                 </div>
               </div>
               <div class="legend">
@@ -86,7 +91,6 @@
                 <i class="expense-dot"></i>Pengeluaran
               </div>
             </article>
-
             <article class="panel">
               <div class="panel-head">
                 <div>
@@ -99,19 +103,17 @@
               </div>
             </article>
           </div>
-
           <article class="panel recent">
             <div class="panel-head">
               <div>
                 <h3>Transaksi Terakhir</h3>
                 <p>Aktivitas keuangan terbaru</p>
               </div>
-              <button class="link" data-go="transactions" type="button">Lihat Semua →</button>
+              <button class="link" data-go="transactions">Lihat Semua →</button>
             </div>
             <div id="recentTransactions"></div>
           </article>
         </section>
-
         <section id="transactions" class="page">
           <div class="panel full">
             <div class="panel-head transhead">
@@ -123,14 +125,13 @@
                 <select id="typeFilter">
                   <option value="">Semua tipe</option>
                   <option value="income">Pemasukan</option>
-                  <option value="expense">Pengeluaran</option>
-                </select><input id="search" placeholder="Cari transaksi…" />
+                  <option value="expense">Pengeluaran</option></select
+                ><input id="search" placeholder="Cari transaksi…" />
               </div>
             </div>
             <div id="transactionTable"></div>
           </div>
         </section>
-
         <section id="categories" class="page">
           <div class="panel full">
             <div class="panel-head">
@@ -138,7 +139,7 @@
                 <h3>Kategori</h3>
                 <p>Atur kategori pemasukan dan pengeluaran</p>
               </div>
-              <button class="primary small" id="addCategory" type="button">
+              <button class="primary small" id="addCategory">
                 ＋ Tambah Kategori
               </button>
             </div>
@@ -147,11 +148,9 @@
         </section>
       </main>
     </div>
-
-    <!-- Modal Transaksi -->
     <div class="modal" id="modal">
       <div class="modal-box">
-        <button class="close" id="closeModal" type="button">×</button>
+        <button class="close" id="closeModal">×</button>
         <h2 id="modalTitle">Tambah Transaksi</h2>
         <p class="modal-desc">Catat aktivitas keuangan Anda.</p>
         <form id="transactionForm">
@@ -191,15 +190,13 @@
               required
               placeholder="0" /></label
           ><label>Tanggal<input name="date" type="date" required /></label
-          ><button class="primary submit" type="submit">Simpan Transaksi</button>
+          ><button class="primary submit">Simpan Transaksi</button>
         </form>
       </div>
     </div>
-
-    <!-- Modal Kategori -->
     <div class="modal" id="categoryModal">
       <div class="modal-box compact">
-        <button class="close" id="closeCategoryModal" type="button">×</button>
+        <button class="close" id="closeCategoryModal">×</button>
         <h2>Tambah Kategori</h2>
         <p class="modal-desc">Buat kategori baru untuk transaksi.</p>
         <form id="categoryForm">
@@ -219,11 +216,10 @@
               required
               value="🏷️"
               maxlength="4" /></label
-          ><button class="primary submit" type="submit">Simpan Kategori</button>
+          ><button class="primary submit">Simpan Kategori</button>
         </form>
       </div>
     </div>
-
     <div id="toast"></div>
     <script src="script.js"></script>
   </body>
